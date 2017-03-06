@@ -48,6 +48,13 @@ namespace Settings {
                 if (json_parameters.contains("Pattern"))
                     parameters_.pattern = json_parameters["Pattern"].toString();
                 else parameters_.pattern = "Compass";
+                if (json_parameters.contains("DirectionScales")) {
+                    QJsonArray scales = json_parameters["DirectionScales"].toArray();
+                    assert(scales.size() == 3); // The direction scales should be specified for each of the three spatial dimensions
+                    parameters_.direction_scales.push_back(scales[0].toDouble());
+                    parameters_.direction_scales.push_back(scales[1].toDouble());
+                    parameters_.direction_scales.push_back(scales[2].toDouble());
+                }
             }
             catch (std::exception const &ex) {
                 throw UnableToParseOptimizerParametersSectionException("Unable to parse optimizer parameters: " + std::string(ex.what()));
