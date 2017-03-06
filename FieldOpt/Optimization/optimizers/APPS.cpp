@@ -36,6 +36,29 @@ namespace Optimization {
             assert(settings->parameters().max_queue_size >= 1.0);
             max_queue_length_ = directions_.size() * settings->parameters().max_queue_size;
             is_async_ = true;
+
+            if (settings->parameters().direction_scales.size() > 0) {
+                auto id_vec = base_case->GetRealVarIdVector();
+                auto well_vars = variables->GetWellSplineVariables();
+                for (auto var : well_vars) {
+                    if (var->propertyInfo().coord == Model::Properties::Property::Coordinate::x) {
+                        int idx = id_vec.indexOf(var->id());
+                        step_lengths_[idx] *= settings->parameters().direction_scales[0];
+                        step_lengths_[idx+num_vars_] *= settings->parameters().direction_scales[0];
+                    }
+                    else if (var->propertyInfo().coord == Model::Properties::Property::Coordinate::y) {
+                        int idx = id_vec.indexOf(var->id());
+                        step_lengths_[idx] *= settings->parameters().direction_scales[1];
+                        step_lengths_[idx+num_vars_] *= settings->parameters().direction_scales[1];
+                    }
+                    if (var->propertyInfo().coord == Model::Properties::Property::Coordinate::z) {
+                        int idx = id_vec.indexOf(var->id());
+                        step_lengths_[idx] *= settings->parameters().direction_scales[2];
+                        step_lengths_[idx+num_vars_] *= settings->parameters().direction_scales[2];
+                    }
+                }
+            }
+
             iterate();
         }
 
