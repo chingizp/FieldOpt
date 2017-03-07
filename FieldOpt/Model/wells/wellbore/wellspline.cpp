@@ -64,6 +64,9 @@ QList<WellBlock *> *WellSpline::GetWellBlocks()
 
     auto wic = WellIndexCalculator(grid_);
     auto block_data = wic.ComputeWellBlocks(heel, toe, well_settings_.wellbore_radius);
+    if (block_data.size() == 0) {
+        throw std::runtime_error("An exception occured when calculating well blocks.");
+    }
     QList<WellBlock *> *blocks = new QList<WellBlock *>();
     for (int i = 0; i < block_data.size(); ++i) {
         blocks->append(getWellBlock(block_data[i]));
