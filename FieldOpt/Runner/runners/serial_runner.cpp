@@ -32,6 +32,10 @@ SerialRunner::SerialRunner(Runner::RuntimeSettings *runtime_settings)
     InitializeOptimizer();
     InitializeBookkeeper();
     InitializeLogger();
+    if (runtime_settings_->check_only()) {
+        std::cout << "Check-only run done." << std::endl;
+        exit(0);
+    }
 }
 
 void SerialRunner::Execute()

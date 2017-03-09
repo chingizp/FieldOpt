@@ -36,6 +36,10 @@ SynchronousMPIRunner::SynchronousMPIRunner(RuntimeSettings *rts) : MPIRunner(rts
         InitializeOptimizer();
         InitializeBookkeeper();
         InitializeLogger();
+        if (runtime_settings_->check_only()) {
+            std::cout << "Check-only run done." << std::endl;
+            exit(0);
+        }
         overseer_ = new MPI::Overseer(this);
     }
     else {
@@ -44,6 +48,10 @@ SynchronousMPIRunner::SynchronousMPIRunner(RuntimeSettings *rts) : MPIRunner(rts
         InitializeSimulator();
         InitializeObjectiveFunction();
         InitializeLogger("rank" + QString::number(rank()));
+        if (runtime_settings_->check_only()) {
+            std::cout << "Check-only run done." << std::endl;
+            exit(0);
+        }
         worker_ = new MPI::Worker(this);
     }
 }

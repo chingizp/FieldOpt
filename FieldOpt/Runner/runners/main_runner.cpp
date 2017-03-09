@@ -8,6 +8,8 @@ namespace Runner {
     MainRunner::MainRunner(RuntimeSettings *rts)
     {
         runtime_settings_ = rts;
+        if (rts->check_only())
+            std::cout << "Performing a check-only run." << std::endl;
 
         switch (runtime_settings_->runner_type()) {
             case RuntimeSettings::RunnerType::SERIAL:

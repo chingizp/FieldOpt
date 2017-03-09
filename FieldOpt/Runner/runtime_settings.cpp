@@ -44,6 +44,8 @@ RuntimeSettings::RuntimeSettings(int argc, const char *argv[])
     if (!overwrite_existing_ && !Utilities::FileHandling::DirectoryIsEmpty(output_dir_))
         throw std::runtime_error("Output directory is not empty. Use the --force flag to overwrite existing content in: " + output_dir_.toStdString());
 
+    check_only_ = vm.count("check") != 0;
+
     if (vm.count("max-parallel-simulations")) {
         max_parallel_sims_ = vm["max-parallel-simulations"].as<int>();
     } else max_parallel_sims_ = 0;
@@ -175,6 +177,8 @@ po::variables_map RuntimeSettings::createVariablesMap(int argc, const char **arg
          "path to script that executes the reservoir simulation")
         ("fieldopt-build-dir,b", po::value<std::string>(),
          "path to FieldOpt build directory")
+        ("check", po::value<int>()->implicit_value(0),
+         "Only check configuration")
         ("sim-drv-path,s", po::value<std::string>(),
          "path to simulator driver file (e.g. *.DATA)")
         ("simulation-timeout,t", po::value<int>(&simulation_timeout)->default_value(0),

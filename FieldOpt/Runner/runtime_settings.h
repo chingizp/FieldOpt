@@ -53,6 +53,7 @@ class RuntimeSettings
   QString fieldopt_build_dir() const { return fieldopt_build_dir_; }
   int verbosity_level() const { return verbosity_level_; }
   bool overwrite_existing() const { return overwrite_existing_; }
+  bool check_only() const { return check_only_; }
   int max_parallel_sims() const { return max_parallel_sims_; }
   int threads_per_sim() const { return threads_per_sim_; }
   int simulation_timeout() const { return simulation_timeout_; }
@@ -70,6 +71,7 @@ class RuntimeSettings
   QString fieldopt_build_dir_; //!< Directory in which FieldOpt is built.
   int verbosity_level_; //!< Verbose mode (i.e. whether or not to print detailed/debug/diagnostic info to the console while running).
   bool overwrite_existing_; //!< Whether or not files in the specified output directory should be overwritten (only relevant if the directory is not empty).
+  bool check_only_; //!< Only check that initialization and base case is OK.
   int max_parallel_sims_; //!< Maximum number of parallel simulations to start. This is important to define if you for example have a limited number of simulator licenses.
   int threads_per_sim_; //!< Number of threads to be used pr. simulation. Only works for ADGPRS.
   int simulation_timeout_; //!< Simulations will be terminated after running for simulation_timeout_ times the lowest recorded simulation time up to that point.
