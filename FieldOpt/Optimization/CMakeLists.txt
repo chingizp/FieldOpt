@@ -39,6 +39,7 @@ add_library(optimization
 		optimizers/compass_search.cpp
 		optimizers/APPS.cpp
 		optimizers/GeneticAlgorithm.cpp
+		optimizers/PSO.cpp
 		optimizers/RGARDD.cpp
         normalizer.cpp
 		${EXPERIMENTAL_CONSTRAINTS_SRC})
