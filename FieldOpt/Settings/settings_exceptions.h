@@ -93,6 +93,12 @@ public:
         : std::runtime_error(message) {}
 };
 
+class NeighborhoodTypeNotRecognizedException : public std::runtime_error {
+public:
+     NeighborhoodTypeNotRecognizedException(const string &message)
+         : std::runtime_error(message) {}
+};
+
 class OptimizerTypeNotRecognizedException : public std::runtime_error {
 public:
     OptimizerTypeNotRecognizedException(const string &message)
