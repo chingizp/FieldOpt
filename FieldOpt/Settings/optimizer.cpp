@@ -39,6 +39,8 @@ Optimizer::Optimizer(QJsonObject json_optimizer)
         type_ = OptimizerType::GeneticAlgorithm;
     else if (QString::compare(type, "ExhaustiveSearch2DVert") == 0)
         type_ = OptimizerType::ExhaustiveSearch2DVert;
+    else if (QString::compare(type, "PSO") == 0)
+        type_ = OptimizerType::PSO;
     else throw OptimizerTypeNotRecognizedException("The optimizer type " + type.toStdString() + " was not recognized.");
 
     // Optimizer mode
@@ -54,6 +56,29 @@ Optimizer::Optimizer(QJsonObject json_optimizer)
 
         // Optimizer parameters
         try {
+            //PSO parameters
+            if (json_parameters.contains("NumberOfParticles"))
+                parameters_.number_of_particles=json_parameters["NumberOfParticles"].toInt();
+            if (json_parameters.contains("InertiaWeight1"))
+                parameters_.inertia_weight1=json_parameters["InertiaWeight1"].toDouble();
+            if (json_parameters.contains("InertiaWeight2"))
+                parameters_.inertia_weight2=json_parameters["InertiaWeight2"].toDouble();
+            if (json_parameters.contains("Coefficient1"))
+                parameters_.coefficient1=json_parameters["Coefficient1"].toDouble();
+            if (json_parameters.contains("Coefficient2"))
+                parameters_.coefficient2=json_parameters["Coefficient2"].toDouble();
+            if (json_optimizer.contains("Neighborhood")){
+                QString neighborhood=json_optimizer["Neighborhood"].toString();
+                if (QString::compare(neighborhood, "Global") == 0)
+                    neighborhood_ = PsoNeighborhoods ::Global;
+                else if (QString::compare(neighborhood, "Ring") == 0)
+                    neighborhood_ = PsoNeighborhoods ::Ring;
+                else if (QString::compare(neighborhood, "Random") == 0)
+                    neighborhood_ = PsoNeighborhoods ::Random;
+                else
+                    throw NeighborhoodTypeNotRecognizedException("The neigborhood type " + neighborhood.toStdString() + " was not recognized.");
+            }
+
             // GSS parameters
             if (json_parameters.contains("MaxEvaluations"))
                 parameters_.max_evaluations = json_parameters["MaxEvaluations"].toInt();

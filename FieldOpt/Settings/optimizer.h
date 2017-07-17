@@ -40,7 +40,7 @@ class Optimizer
  public:
   Optimizer(){}
   Optimizer(QJsonObject json_optimizer);
-  enum OptimizerType { Compass, APPS, ExhaustiveSearch2DVert, GeneticAlgorithm };
+  enum OptimizerType { Compass, APPS, ExhaustiveSearch2DVert, GeneticAlgorithm, PSO };
   enum OptimizerMode { Maximize, Minimize };
   enum ConstraintType { BHP, Rate, SplinePoints,
     WellSplineLength, WellSplineInterwellDistance, WellSplineDomain,
@@ -50,8 +50,16 @@ class Optimizer
   };
   enum ConstraintWellSplinePointsType { MaxMin, Function};
   enum ObjectiveType { WeightedSum };
+  enum PsoNeighborhoods{Global, Ring, Random};
 
   struct Parameters {
+    // PSO parameters
+    int number_of_particles; //! Number of particles for PSO algorithm
+    double coefficient1; //! Accelaration or trust coefficient (cognitive term) for PSO algorithm
+    double coefficient2; //! Accelaration or trust coefficient (social term ) for PSO algorithm
+    double inertia_weight1; //! Initial inertia weight for PSO algorithm
+    double inertia_weight2; //! Final inertia weight for PSO algorithm
+
     // GSS parameters
     int max_evaluations; //!< Maximum number of evaluations allowed before terminating the optimization run.
     double initial_step_length; //!< The initial step length in the algorithm when applicable.
@@ -105,6 +113,7 @@ class Optimizer
   Parameters parameters() const { return parameters_; } //!< Get the optimizer parameters.
   Objective objective() const { return objective_; } //!< Get the optimizer objective function.
   QList<Constraint> constraints() const { return constraints_; } //!< Get the optimizer constraints.
+  PsoNeighborhoods neighborhood() const { return neighborhood_;} //!< Get the neighborhood type for PSO algorithm (e.g. Ring)
 
  private:
   QList<Constraint> constraints_;
@@ -112,6 +121,7 @@ class Optimizer
   Parameters parameters_;
   Objective objective_;
   OptimizerMode mode_;
+  PsoNeighborhoods neighborhood_;
   Constraint parseSingleConstraint(QJsonObject json_constraint);
 };
 
