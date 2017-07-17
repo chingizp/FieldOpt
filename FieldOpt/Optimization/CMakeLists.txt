@@ -40,6 +40,7 @@ add_library(optimization
 		optimizers/APPS.cpp
 		optimizers/GeneticAlgorithm.cpp
 		optimizers/PSO.cpp
+        optimizers/Particle.cpp
 		optimizers/RGARDD.cpp
         normalizer.cpp
 		${EXPERIMENTAL_CONSTRAINTS_SRC})
