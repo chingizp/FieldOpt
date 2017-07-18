@@ -76,7 +76,9 @@ class ConstraintHandler
   Eigen::VectorXd GetLowerBounds(QList<QUuid> id_vector) const;
   Eigen::VectorXd GetUpperBounds(QList<QUuid> id_vector) const;
 
- private:
+    CombinedSplineLengthInterwellDistanceReservoirBoundary *get_constraints_from_case_handler() const ;
+
+private:
   QList<Constraint *> constraints_;
 };
 

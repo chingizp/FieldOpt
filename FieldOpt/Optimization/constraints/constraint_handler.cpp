@@ -123,5 +123,14 @@ long double ConstraintHandler::GetWeightedNormalizedPenalties(Case *c) {
     return wnp;
 }
 
+    CombinedSplineLengthInterwellDistanceReservoirBoundary *ConstraintHandler::get_constraints_from_case_handler() const {
+        for (Constraint *constr : constraints_) {
+            if (CombinedSplineLengthInterwellDistanceReservoirBoundary* rbconstr = dynamic_cast<CombinedSplineLengthInterwellDistanceReservoirBoundary*>(constr)) {
+                return dynamic_cast<CombinedSplineLengthInterwellDistanceReservoirBoundary*>(constr);
+            }
+        }
+        throw std::runtime_error("Unable to find the specified constraint.");
+    }
+    }
 }
-}
+
