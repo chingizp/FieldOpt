@@ -233,5 +233,15 @@ double Optimizer::PenalizedOFV(Case *c) {
         return normalizer_ofv_.denormalize(norm_pen_ovf);
     }
 }
+
+    void Optimizer::update_base_case_ofv() {
+        if (mode_ == Settings::Optimizer::OptimizerMode::Maximize) {
+            case_handler_->UpdateCaseObjectiveFunctionValue(GetTentativeBestCase()->id(),std::numeric_limits<double>::min());
+        }
+        else if (mode_ == Settings::Optimizer::OptimizerMode::Minimize) {
+            case_handler_->UpdateCaseObjectiveFunctionValue(GetTentativeBestCase()->id(),std::numeric_limits<double>::max());
+        }
+
+    }
 }
 
