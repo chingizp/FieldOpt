@@ -57,6 +57,7 @@ class WellSplineConstraint
   struct Well {
     Coord heel;
     Coord toe;
+    QString name;
   };
 
   /*!
