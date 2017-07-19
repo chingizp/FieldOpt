@@ -323,7 +323,7 @@ Optimizer::Constraint Optimizer::parseSingleConstraint(QJsonObject json_constrai
         optimizer_constraint.box_jmax = json_constraint["BoxJmax"].toInt();
         optimizer_constraint.box_kmin = json_constraint["BoxKmin"].toInt();
         optimizer_constraint.box_kmax = json_constraint["BoxKmax"].toInt();
-        if (optimizer_constraint.wells.length() != 2)
+        if (optimizer_constraint.wells.length() != 5)
             throw UnableToParseOptimizerConstraintsSectionException(
                 "WellSplineInterwellDistanceReservoirBoundary constraint needs a Wells array with exactly two well names specified.");
     }
