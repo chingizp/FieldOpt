@@ -53,7 +53,7 @@ void EclDriverFileWriter::WriteDriverFile()
     DriverParts::ECLDriverParts::Solution solution = DriverParts::ECLDriverParts::Solution(original_driver_file_contents_);
     DriverParts::ECLDriverParts::Summary summary = DriverParts::ECLDriverParts::Summary(original_driver_file_contents_);
     DriverParts::ECLDriverParts::Schedule schedule = DriverParts::ECLDriverParts::Schedule(model_->wells(),
-                                                                                           settings_->model()->control_times());
+                                                                                           settings_->model()->control_times(), original_driver_file_contents_);
 
     model_->SetCompdatString(DriverParts::ECLDriverParts::Compdat(model_->wells()).GetPartString());
 
