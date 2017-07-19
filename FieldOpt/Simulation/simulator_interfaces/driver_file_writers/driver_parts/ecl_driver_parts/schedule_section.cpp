@@ -32,16 +32,18 @@ namespace DriverFileWriters {
 namespace DriverParts {
 namespace ECLDriverParts {
 
-Schedule::Schedule(QList<Model::Wells::Well *> *wells, QList<int> control_times)
+Schedule::Schedule(QList<Model::Wells::Well *> *wells, QList<int> control_times, QStringList *driver_file_contents)
 {
     welspecs_ = new Welspecs(wells);
     compdat_ = new Compdat(wells);
     wellcontrols_ = new WellControls(wells, control_times);
+    possible_keywords_=getSectionContent(driver_file_contents,"SCHEDULE","WELSPECS");
 }
 
 QString Schedule::GetPartString()
 {
-    return QString("SCHEDULE\n\n%1%2%3\n\nEND")
+    return QString("\n\n%1%2%3\n\nGRUPTREE \n 'GROUP1' FIELD /\n/\n\n%4\n\nEND")
+            .arg(possible_keywords_)
             .arg(welspecs_->GetPartString())
             .arg(compdat_->GetPartString())
             .arg(wellcontrols_->GetPartString());

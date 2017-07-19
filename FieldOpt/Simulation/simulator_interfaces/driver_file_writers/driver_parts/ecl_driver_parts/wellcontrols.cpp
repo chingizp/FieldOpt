@@ -74,7 +74,7 @@ namespace Simulation {
                             return QString(""); // A Time entry should not be created for the initial step
                         }
                         int delta_time = time - prev_time; // The amount of time to advance
-                        return QString("TSTEP\n   %1*2/\n\n").arg(delta_time/2);
+                        return QString("TUNING\n1 1* 0.1 /\n/\n12 1* 150 /\n\n TSTEP\n%1*73/\n\n").arg(delta_time/2);
                     }
 
                     QString WellControls::createProducerEntry(WellControls::WellSetting *setting)
