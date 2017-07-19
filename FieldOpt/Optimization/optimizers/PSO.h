@@ -42,13 +42,13 @@ namespace Optimization{
 
             QList<Case *> update_particles();
 
-            const QHash<QUuid, double> &perturb_real_variables(QHash<QUuid, double> hash);
+            QHash<QUuid, double> perturb_real_variables(QHash<QUuid, double> hash);
 
             void set_particles(QList<Particle *> list);
 
             void absorb_particles(QList<Case *> list);
 
-            const QHash<QUuid, double> &create_random_velocity(int i);
+            QHash<QUuid, double> create_random_velocity(int i);
 
             QList<int> get_cell_indices_of_regions(int i, int i1, int i2, int i3, int i4, int i5);
 

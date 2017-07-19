@@ -112,7 +112,7 @@ namespace Optimization{
             return new_cases;
         }
 
-        const QHash<QUuid, double> &PSO::perturb_real_variables(QHash<QUuid, double> real_variables) {
+        QHash<QUuid, double> PSO::perturb_real_variables(QHash<QUuid, double> real_variables) {
             QList<QString> names;
             names.append("PROD1");
             names.append("PROD2");
@@ -239,7 +239,7 @@ namespace Optimization{
 
         }
 
-        const QHash<QUuid, double> &PSO::create_random_velocity(int i) {
+        QHash<QUuid, double> PSO::create_random_velocity(int i) {
             QHash<QUuid,double > velocities= QHash<QUuid, double>();
             velocities.reserve(i);
             for (QUuid id:var_keys_) {
