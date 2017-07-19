@@ -1,0 +1,551 @@
+{
+    "Global": {
+        "Name": "OLYMPUS",
+        "BookkeeperTolerance": 2.0
+    },
+    "Optimizer": {
+        "Type": "PSO",
+        "Mode": "Maximize",
+        "Neighborhood": "Global",
+        "Parameters": {
+            "MaxEvaluations":10,
+            "NumberOfParticles":5.0,
+            "Coefficient1": 1.193,
+            "Coefficient2": 1.193,
+            "InertiaWeight1": 1.2,
+            "InertiaWeight2": 0.2
+        },
+        "Objective": {
+            "Type": "WeightedSum",
+            "WeightedSumComponents": [
+                {
+                    "Coefficient": 1.0, "Property": "CumulativeOilProduction", "TimeStep": -1,
+                    "IsWellProp": false
+                },
+                {
+                    "Coefficient": -0.2, "Property": "CumulativeWaterProduction", "TimeStep": -1,
+                    "IsWellProp": false
+                }
+            ]
+        },
+        "Constraints": [
+            {
+                "Wells": ["PROD1", "PROD2", "PROD3","PROD4","PROD5"],
+                "Type": "CombinedWellSplineLengthInterwellDistanceReservoirBoundary",
+                "MinLength": 400,
+                "MaxLength": 1100,
+                "MinDistance" :200,
+                "MaxIterations": 5,
+                "BoxImin": 0,
+                "BoxImax": 117,
+                "BoxJmin": 0,
+                "BoxJmax": 180,
+                "BoxKmin": 0,
+                "BoxKmax": 15               
+            }
+        ]
+    },
+   "Simulator": {
+        "Type": "ECLIPSE",        
+        "ExecutionScript": "csh_eclrun"
+    },
+    "Model": {
+        "ControlTimes": [0, 50],
+        "Reservoir": {
+            "Type": "ECLIPSE"
+        },
+        "Wells": [
+            {
+                "Name": "PROD1",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                     "SplinePoints": {
+                    "Heel": {
+                        "x": 526275,
+                        "y": 6179700,
+                        "z": 2053.27,
+                        "IsVariable": true
+                    },
+                    "Toe": {
+                        "x": 525474,
+                        "y": 6180380,
+                        "z": 2063.72,
+                        "IsVariable": true
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD2",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                               "SplinePoints": {
+                    "Heel": {
+                        "x": 524288,
+                        "y": 6179780,
+                        "z": 2035.16,
+                        "IsVariable": true
+                    },
+                    "Toe": {
+                        "x": 523913,
+                        "y": 6180080,
+                        "z": 2046,
+                        "IsVariable": true
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD3",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                   "SplinePoints": {
+                    "Heel": {
+                        "x": 523435,
+                        "y": 6179700,
+                        "z": 2043.51,
+                        "IsVariable": true
+                    },
+                    "Toe": {
+                        "x": 522760,
+                        "y": 6179990,
+                        "z": 2066.2,
+                        "IsVariable": true
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD4",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+               "SplinePoints": {
+                    "Heel": {
+                        "x": 524374,
+                        "y": 6179290,
+                        "z": 2056.5,
+                        "IsVariable": true
+                    },
+                    "Toe": {
+                        "x": 523648,
+                        "y": 6179720,
+                        "z": 2076.3,
+                        "IsVariable": true
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD5",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+               "SplinePoints": {
+                    "Heel": {
+                        "x": 523593,
+                        "y": 6179230,
+                        "z": 2035.31,
+                        "IsVariable": true
+                    },
+                    "Toe": {
+                        "x": 523500,
+                        "y": 6179270,
+                        "z": 2055.74,
+                        "IsVariable": true
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD6",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 522680,
+                        "y": 6179130,
+                        "z": 2039.99,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 522696,
+                        "y": 6179560,
+                        "z": 2051.77,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+
+ {
+                "Name": "PROD7",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+               "SplinePoints": {
+                    "Heel": {
+                        "x": 521534,
+                        "y": 6178900,
+                        "z": 2060.43,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 521184,
+                        "y": 6179090,
+                        "z": 2066.91,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD8",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 526541,
+                        "y": 6180150,
+                        "z": 2044.62,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 526654,
+                        "y": 6180150,
+                        "z": 2090.4,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD9",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 524895,
+                        "y": 6180210,
+                        "z": 2053.39,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 524905,
+                        "y": 6180200,
+                        "z": 2088.22,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+ {
+                "Name": "PROD10",
+                "Group": "GROUP1",
+                "Type": "Producer",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Oil",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 522946,
+                        "y": 6180570,
+                        "z": 2064.64,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 522949,
+                        "y": 6180570,
+                        "z": 2083.48,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 175.0
+                    }
+                ]
+            },
+
+
+
+             {
+                "Name": "INJ1",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 525166,
+                        "y": 6180780,
+                        "z": 2054.3,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 525215,
+                        "y": 6180790,
+                        "z": 2080.58,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            },
+             {
+                "Name": "INJ2",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 523809,
+                        "y": 6180540,
+                        "z": 2053.51,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 523816,
+                        "y": 6180540,
+                        "z": 2084.51,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            },
+             {
+                "Name": "INJ3",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 522086,
+                        "y": 6180360,
+                        "z": 2056.03,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 522088,
+                        "y": 6180360,
+                        "z": 2081.07,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            },
+            {
+                "Name": "INJ4",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 521956,
+                        "y": 6179340,
+                        "z": 2056.73,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 522008,
+                        "y": 6179320,
+                        "z": 2083.8,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            },
+            {
+                "Name": "INJ5",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 520840,
+                        "y": 6178760,
+                        "z": 2067.93,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 520758,
+                        "y": 6178740,
+                        "z": 2086.28,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            },
+             {
+                "Name": "INJ6",
+                "Group": "GROUP1",
+                "Type": "Injector",
+                "DefinitionType": "WellSpline",
+                "PreferredPhase": "Water",
+                "WellboreRadius": 0.1905,
+                "SplinePoints": {
+                    "Heel": {
+                        "x": 526782,
+                        "y": 6180700,
+                        "z": 2064.84,
+                        "IsVariable": false
+                    },
+                    "Toe": {
+                        "x": 526784,
+                        "y": 6180700,
+                        "z": 2080.45,
+                        "IsVariable": false
+                    }
+                },
+                "Controls": [
+                    {
+                        "TimeStep": 0,
+                        "Type": "Water",
+                        "State": "Open",
+                        "Mode": "BHP",
+                        "BHP": 235.0
+                    }
+                ]
+            }
+
+        ]
+    }
+}
