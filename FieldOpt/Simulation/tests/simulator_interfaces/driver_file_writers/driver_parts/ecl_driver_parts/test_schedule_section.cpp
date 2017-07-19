@@ -9,7 +9,8 @@ namespace {
 class DriverPartScheduleTest : public ::testing::Test, public TestResources::TestResourceModel {
 protected:
     DriverPartScheduleTest(){
-        schedule_ = new Schedule(model_->wells(), settings_model_->control_times());
+        QStringList *driver_file_contents = Utilities::FileHandling::ReadFileToStringList(settings_simulator_->driver_file_path());
+        schedule_ = new Schedule(model_->wells(), settings_model_->control_times(),driver_file_contents);
     }
     virtual ~DriverPartScheduleTest(){}
 
